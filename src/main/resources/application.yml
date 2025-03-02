@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: md-doc
+md-doc:
+  base-package: cn.isaxon.mddoc
