@@ -2,4 +2,7 @@ spring:
   application:
     name: md-doc
 md-doc:
-  base-package: cn.isaxon.mddoc
+  base-package: cn.isaxon.mddoc.example
+  server-url: http://localhost:8080
+  tag-index-number: chinese
+  api-index-number: arabic

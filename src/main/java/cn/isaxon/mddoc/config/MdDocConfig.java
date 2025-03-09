@@ -1,5 +1,6 @@
 package cn.isaxon.mddoc.config;
 
+import cn.isaxon.mddoc.util.helper.NumberConverter;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -17,5 +18,11 @@ import org.springframework.stereotype.Component;
 public class MdDocConfig {
 
     private String basePackage;
+
+    private String serverUrl;
+
+    private NumberConverter.NumberConverterEnum tagIndexNumber = NumberConverter.NumberConverterEnum.CHINESE;
+
+    private NumberConverter.NumberConverterEnum apiIndexNumber = NumberConverter.NumberConverterEnum.ARABIC;
 
 }
