@@ -14,7 +14,7 @@ import lombok.Data;
 @Schema(description = "用户实体")
 public class User {
 
-    @Schema(description = "用户名", example = "saxon")
+    @Schema(description = "用户名", example = "saxon", requiredMode = Schema.RequiredMode.REQUIRED)
     private String userName;
 
     @Schema(description = "密码", example = "123456")

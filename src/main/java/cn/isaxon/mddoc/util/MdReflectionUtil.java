@@ -1,13 +1,13 @@
 package cn.isaxon.mddoc.util;
 
+import lombok.extern.slf4j.Slf4j;
+import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.lang.reflect.Modifier;
+import java.util.*;
 
 /**
  * <p></p>
@@ -16,6 +16,7 @@ import java.util.Set;
  * @author Saxon Lai
  * Copyright © 2025 Saxon Lai(分段的函数) | <a href="https://isaxon.cn">1455066227@qq.com</a>
  */
+@Slf4j
 public class MdReflectionUtil {
 
     public static Set<Class<?>> scanTypesAnnotatedWith(String basePackage, Class<? extends Annotation> clazz) {
@@ -44,6 +45,9 @@ public class MdReflectionUtil {
      * @return 如果注解A被注解B注解过，返回true；否则返回false
      */
     public static boolean isAnnotatedWith(Class<? extends Annotation> annotationClass, Class<? extends Annotation> targetAnnotationClass) {
+        if (annotationClass == targetAnnotationClass) {
+            return true;
+        }
         return isAnnotatedWith(annotationClass, targetAnnotationClass, new HashSet<>());
     }
 
@@ -71,4 +75,29 @@ public class MdReflectionUtil {
         return false;
     }
 
+    /**
+     * 注解转换成map
+     *
+     * @param annotation 注解
+     * @param <T>        T extends Annotation
+     * @return map
+     */
+    public static <T extends Annotation> Map<String, Object> annotationToMap(T annotation) {
+        Map<String, Object> annotationMap = new HashMap<>();
+        if (annotation != null) {
+            Class<?> annotationClass = annotation.getClass();
+
+            Set<Method> methods = ReflectionUtils.getMethods(annotationClass);
+            for (Method method : methods) {
+                try {
+                    if (Modifier.isPublic(method.getModifiers())) {
+                        annotationMap.put(method.getName(), method.invoke(annotation));
+                    }
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+            }
+        }
+        return annotationMap;
+    }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Operation(description = "用户登录")
-    @PostMapping("/signIn")
+    @PostMapping({"/signIn", "singIn2"})
     public User signIn(@RequestBody User user) {
         user.setUserName("saxon");
         user.setGender("male");
@@ -27,8 +27,9 @@ public class UserController {
     }
 
     @Operation(description = "用户注册")
-    @GetMapping("/signUp")
-    public int signUp(@RequestBody User user) {
+//    @GetMapping("/signUp")
+    @RequestMapping(value = "/signUp", method = {RequestMethod.POST, RequestMethod.GET})
+    public int signUp(User user) {
         return 1;
     }
 }

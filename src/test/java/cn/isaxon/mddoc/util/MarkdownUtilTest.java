@@ -9,7 +9,6 @@ import java.util.List;
 
 class MarkdownUtilTest {
 
-
     @Test
     public void generateTable() throws Exception {
         ArrayList<List<String>> rowCellsList = new ArrayList<>();

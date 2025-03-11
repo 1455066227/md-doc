@@ -21,6 +21,8 @@ public class MdDocConfig {
 
     private String serverUrl;
 
+    private String title;
+
     private NumberConverter.NumberConverterEnum tagIndexNumber = NumberConverter.NumberConverterEnum.CHINESE;
 
     private NumberConverter.NumberConverterEnum apiIndexNumber = NumberConverter.NumberConverterEnum.ARABIC;

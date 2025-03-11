@@ -6,3 +6,4 @@ md-doc:
   server-url: http://localhost:8080
   tag-index-number: chinese
   api-index-number: arabic
+  title: Markdown API
